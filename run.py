@@ -600,6 +600,11 @@ class TestRunner:
 
             open(os.path.join(self.output, "cmdline"), "w").write(cmdline)
 
+            env_keys = env.keys()
+            env_str = ["%s=%s" % (key, env[key]) for key in env_keys]
+            print("ENV %s" % " ".join(env_str))
+            print("CWD {}".format(os.getcwd()))
+
             p = subprocess.Popen(
                 args, shell=shell, cwd=self.directory, env=env,
                 stdout=subprocess.PIPE, stderr=subprocess.PIPE)
