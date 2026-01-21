@@ -1,0 +1,1 @@
+alert smtp any any -> $SMTP_SERVERS any (msg:"inline-test"; flow:established; content:"|0D 0A 0D 0A|TV"; content:"AAAAAAAAAAAAAAAA"; within:200; classtype:bad-unknown; sid:1000009; rev:1;)
