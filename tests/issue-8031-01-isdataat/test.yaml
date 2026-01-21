@@ -1,0 +1,63 @@
+pcap: ../threshold/threshold-rule-flow/icmp.pcap
+
+checks:
+  # alert icmp any any -> any any (isdataat:31; sid:1;) -> match
+  - filter:
+      count: 12
+      match:
+        event_type: alert
+        alert.signature_id: 1
+  # alert icmp any any -> any any (isdataat:32; sid:2;) -> no match
+  - filter:
+      count: 0
+      match:
+        event_type: alert
+        alert.signature_id: 2
+  # alert icmp any any -> any any (isdataat:33; sid:3;) -> no match
+  - filter:
+      count: 0
+      match:
+        event_type: alert
+        alert.signature_id: 3
+  # alert icmp any any -> any any (isdataat:31,relative; sid:11;) -> match
+  - filter:
+      count: 12
+      match:
+        event_type: alert
+        alert.signature_id: 11
+  # alert icmp any any -> any any (isdataat:32,relative; sid:12;) -> match, this is different from absolute
+  - filter:
+      count: 12
+      match:
+        event_type: alert
+        alert.signature_id: 12
+  # alert icmp any any -> any any (isdataat:33,relative; sid:13;) -> no match
+  - filter:
+      count: 0
+      match:
+        event_type: alert
+        alert.signature_id: 13
+  # alert icmp any any -> any any (content:"a"; depth:1; isdataat:30,relative; sid:21;) -> match
+  - filter:
+      count: 12
+      match:
+        event_type: alert
+        alert.signature_id: 21
+  # alert icmp any any -> any any (content:"a"; depth:1; isdataat:31,relative; sid:22;) -> match
+  - filter:
+      count: 12
+      match:
+        event_type: alert
+        alert.signature_id: 22
+  #alert icmp any any -> any any (content:"a"; depth:1; isdataat:32,relative; sid:23;) -> no match
+  - filter:
+      count: 0
+      match:
+        event_type: alert
+        alert.signature_id: 23
+  # alert icmp any any -> any any (content:"a"; depth:1; isdataat:33,relative; sid:24;) -> no match
+  - filter:
+      count: 0
+      match:
+        event_type: alert
+        alert.signature_id: 24
