@@ -1,0 +1,15 @@
+requires:
+  min-version: 9.0.0
+
+args:
+  - --set default-rule-path=${TEST_DIR}
+  - --set security.lua.allow-restricted-functions=true
+
+pcap: ../lua-bad-script/test.pcap
+
+checks:
+  - filter:
+      count: 8
+      match:
+        event_type: alert
+        alert.signature_id: 1

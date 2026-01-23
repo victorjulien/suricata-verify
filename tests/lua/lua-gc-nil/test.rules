@@ -1,0 +1,1 @@
+alert ip any any -> any any (msg:"Lua GC nil crash"; lua:test.lua; sid:1; rev:1;)
