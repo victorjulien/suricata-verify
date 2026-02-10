@@ -1,6 +1,7 @@
 requires:
+  min-version: 9
   features:
-    - DEBUG
+    - QA_SIMULATION
 
 pcap: ../tls/tls-certs-alert/input.pcap
 
@@ -23,14 +24,14 @@ checks:
         event_type: tls
         tls.sni: example.com
   - filter:
-      min-version: 7.0.12
+    #min-version: 7.0.12 temporary removal
       count: 1
       match:
         event_type: flow
         not-has-key: flow.exception_policy[0].target
         not-has-key: flow.exception_policy[0].policy
   - filter:
-      min-version: 7.0.12
+    #min-version: 7.0.12 temporary removal
       count: 1
       match:
         event_type: stats

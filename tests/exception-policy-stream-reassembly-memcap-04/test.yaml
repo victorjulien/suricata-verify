@@ -1,7 +1,8 @@
 requires:
-  min-version: 7
+  #min-version: 7 temporary removal
+  min-version: 9
   features:
-    - DEBUG
+    - QA_SIMULATION
 pcap: ../tls/tls-certs-alert/input.pcap
 args:
 - --simulate-ips
@@ -53,14 +54,14 @@ checks:
         event_type: stats
         stats.ips.drop_reason.stream_reassembly: 1
   - filter:
-      min-version: 7.0.12
+    #min-version: 7.0.12 temporary removal
       count: 1
       match:
         event_type: flow
         flow.exception_policy[0].target: "stream_reassembly_memcap"
         flow.exception_policy[0].policy: "drop_flow"
   - filter:
-      min-version: 7.0.12
+    #min-version: 7.0.12 temporary removal
       count: 1
       match:
         event_type: stats

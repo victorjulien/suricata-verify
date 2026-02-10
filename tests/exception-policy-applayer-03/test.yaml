@@ -1,7 +1,8 @@
 requires:
-  min-version: 7.0.12
+  #min-version: 7.0.12 temporary change
+  min-version: 9
   features:
-    - DEBUG
+    - QA_SIMULATION
 pcap: ../bittorrent-dht/input.pcap
 args:
 - --simulate-ips

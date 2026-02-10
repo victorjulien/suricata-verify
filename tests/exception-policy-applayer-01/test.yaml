@@ -1,6 +1,7 @@
 requires:
+  min-version: 9
   features:
-    - DEBUG
+    - QA_SIMULATION
 pcap: ../tls/tls-certs-alert/input.pcap
 args:
 - --simulate-ips
@@ -47,13 +48,13 @@ checks:
         event_type: flow
         flow.action: drop
   - filter:
-      min-version: 7
+    #min-version: 7 temporary removal
       count: 1
       match:
         event_type: stats
         stats.ips.drop_reason.applayer_error: 1
   - filter:
-      min-version: 7.0.12
+    #min-version: 7.0.12 temporary removal
       count: 1
       match:
         event_type: stats
@@ -61,7 +62,7 @@ checks:
         stats.exception_policy.app_layer.error.pass_flow: 0
         not-has-key: stats.app_layer.error.tls.exception_policy.drop_flow
   - filter:
-      min-version: 7.0.12
+    #min-version: 7.0.12 temporary removal
       count: 1
       match:
         event_type: flow

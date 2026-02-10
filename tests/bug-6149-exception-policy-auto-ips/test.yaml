@@ -1,7 +1,7 @@
 requires:
+  min-version: 9
   features:
-    - DEBUG
-  min-version: 7
+    - QA_SIMULATION
 
 pcap: ../tls/tls-certs-alert/input.pcap
 

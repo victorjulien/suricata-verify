@@ -1,6 +1,7 @@
 requires:
+  min-version: 9
   features:
-    - DEBUG
+    - QA_SIMULATION
 
 pcap: ../tls/tls-cert-issuer/tls.pcap
 
@@ -27,20 +28,20 @@ checks:
         event_type: stats
         stats.tcp.midstream_pickups: 1
   - filter:
-      min-version: 7
+    #min-version: 7 temporary removal
       count: 1
       match:
         event_type: stats
         stats.ips.drop_reason.flow_memcap: 1
   - filter:
-      min-version: 7.0.12
+    #min-version: 7.0.12 temporary removal
       count: 1
       match:
         event_type: stats
         stats.exception_policy.flow.memcap.drop_packet: 1
         stats.exception_policy.flow.memcap.pass_packet: 0
   - filter:
-      min-version: 7.0.12
+    #min-version: 7.0.12 temporary removal
       count: 1
       match:
         event_type: flow
