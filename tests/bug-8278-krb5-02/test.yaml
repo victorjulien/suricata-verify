@@ -1,0 +1,35 @@
+requires:
+  min-version: 9
+
+checks:
+  - filter:
+      count: 1
+      match:
+        event_type: alert
+        alert.signature_id: 1
+  - filter:
+      count: 1
+      match:
+        event_type: alert
+        alert.signature_id: 2
+  - filter:
+      count: 1
+      match:
+        event_type: krb5
+        krb5.msg_type: "KRB_AS_REQ"
+        krb5.cname: "testuser"
+        krb5.realm: "DEMO.LOCAL"
+        krb5.sname: "krbtgt/DEMO.LOCAL"
+        krb5.encryption: "<none>"
+        krb5.weak_encryption: false
+  - filter:
+      count: 1
+      match:
+        event_type: krb5
+        krb5.msg_type: "KRB_TGS_REQ"
+        krb5.cname: "testuser"
+        krb5.realm: "DEMO.LOCAL"
+        krb5.sname: "krbtgt/DEMO.LOCAL"
+        krb5.encryption: "<none>"
+        krb5.weak_encryption: false
+

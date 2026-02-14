@@ -1,0 +1,71 @@
+requires:
+  min-version: 9
+
+checks:
+  - filter:
+      count: 1
+      match:
+        event_type: alert
+        alert.signature_id: 1
+  - filter:
+      count: 2
+      match:
+        event_type: alert
+        alert.signature_id: 2
+  - filter:
+      count: 2
+      match:
+        event_type: krb5
+        krb5.msg_type: "KRB_AS_REQ"
+        krb5.cname: "test"
+        krb5.realm: "DOM189.LOCAL"
+        krb5.sname: "krbtgt/DOM189.LOCAL"
+        krb5.encryption: "<none>"
+        krb5.weak_encryption: false
+  - filter:
+      count: 1
+      match:
+        event_type: krb5
+        krb5.msg_type: "KRB_AS_REP"
+        krb5.cname: "test"
+        krb5.realm: "DOM189.LOCAL"
+        krb5.sname: "krbtgt/DOM189.LOCAL"
+        krb5.encryption: "rc4-hmac"
+        krb5.weak_encryption: true
+        krb5.ticket_encryption: "aes256-cts-hmac-sha1-96"
+        krb5.ticket_weak_encryption: false
+  - filter:
+      count: 1
+      match:
+        event_type: krb5
+        krb5.msg_type: "KRB_TGS_REQ"
+        krb5.cname: "<empty>"
+        krb5.realm: "DOM189.LOCAL"
+        krb5.sname: "host/anything"
+        krb5.encryption: "<none>"
+        krb5.weak_encryption: false
+  - filter:
+      count: 1
+      match:
+        event_type: krb5
+        krb5.msg_type: "KRB_ERROR"
+        krb5.failed_request: "KRB_AS_REQ"
+        krb5.error_code: "KDC_ERR_PREAUTH_REQUIRED"
+        krb5.cname: "<empty>"
+        krb5.realm: "<empty>"
+        krb5.sname: "krbtgt/DOM189.LOCAL"
+        krb5.encryption: "<none>"
+        krb5.weak_encryption: false
+  - filter:
+      count: 1
+      match:
+        event_type: krb5
+        krb5.msg_type: "KRB_ERROR"
+        krb5.failed_request: "KRB_TGS_REQ"
+        krb5.error_code: "KDC_ERR_S_PRINCIPAL_UNKNOWN"
+        krb5.cname: "<empty>"
+        krb5.realm: "<empty>"
+        krb5.sname: "host/anything"
+        krb5.encryption: "<none>"
+        krb5.weak_encryption: false
+
