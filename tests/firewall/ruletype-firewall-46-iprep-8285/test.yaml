@@ -1,0 +1,43 @@
+requires:
+  min-version: 9
+
+pcap: ../ruletype-firewall-45-iprep-8285/input.pcap
+
+args:
+  - --simulate-ips
+  - --set reputation-categories-file=${TEST_DIR}/categories.txt
+  - --set reputation-files.0=${TEST_DIR}/iprep.list
+
+checks:
+- filter:
+    count: 0
+    match:
+      event_type: alert
+- filter:
+    count: 7
+    match:
+      event_type: drop
+- filter:
+    count: 1
+    match:
+      event_type: drop
+      pcap_cnt: 4
+- filter:
+    count: 0
+    match:
+      event_type: tls
+- filter:
+    count: 1
+    match:
+      event_type: flow
+      dest_ip: 82.165.177.154
+- filter:
+    count: 1
+    match:
+      event_type: stats
+      stats.ips.accepted: 3
+      stats.ips.blocked: 7
+      stats.ips.drop_reason.pre_flow_hook: 0
+      stats.ips.drop_reason.default_packet_policy: 0
+      stats.ips.drop_reason.default_app_policy: 1
+      stats.ips.drop_reason.flow_drop: 6
